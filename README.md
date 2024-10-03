@@ -6,3 +6,5 @@ A plugin that enables you to toggle various bars in Zotero. It adds three menu b
 
 # Installation
 Run the `build.sh` file, which creates an XPI package. Drag this XPI package to the plugins dialog.
+
+Alternatively, you could use the prebuilt binary from the releases page.
