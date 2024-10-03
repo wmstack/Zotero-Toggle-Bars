@@ -5,3 +5,4 @@ A plugin that enables you to toggle various bars in Zotero. It adds three menu b
 + Toggle Sidebar
 
 # Installation
+Run the `build.sh` file, which creates an XPI package. Drag this XPI package to the plugins dialog.
