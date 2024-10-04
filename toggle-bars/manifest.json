@@ -1,14 +1,14 @@
 {
-	"manifest_version": 2,
-	"name": "Toggle Bars",
-	"version": "0.0.2",
-	"description": "Allows you to toggle various bars as well as the sidebar",
-	"homepage_url": "https://github.com/wmstack/Zotero-Toggle-Bars",
-	"applications": {
-		"zotero": {
-			"id": "togglebars@example.com",
-			"strict_min_version": "6.999",
-			"strict_max_version": "7.0.*"
-		}
-	}
+  "manifest_version": 2,
+  "name": "Toggle Bars",
+  "version": "0.0.2",
+  "description": "Allows you to toggle various bars as well as the sidebar",
+  "homepage_url": "https://github.com/wmstack/Zotero-Toggle-Bars",
+  "applications": {
+    "zotero": {
+      "id": "togglebars@example.com",
+      "strict_min_version": "6.999",
+      "strict_max_version": "7.0.*"
+    }
+  }
 }
