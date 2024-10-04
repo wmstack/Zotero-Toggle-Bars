@@ -1,13 +1,12 @@
 {
 	"manifest_version": 2,
 	"name": "Toggle Bars",
-	"version": "2.0",
+	"version": "0.0.2",
 	"description": "Allows you to toggle various bars as well as the sidebar",
-	"homepage_url": "https://github.com/zotero/make-it-red",
+	"homepage_url": "https://github.com/wmstack/Zotero-Toggle-Bars",
 	"applications": {
 		"zotero": {
 			"id": "togglebars@example.com",
-			"update_url": "https://zotero-download.s3.amazonaws.com/tmp/make-it-red/updates-2.0.json",
 			"strict_min_version": "6.999",
 			"strict_max_version": "7.0.*"
 		}
