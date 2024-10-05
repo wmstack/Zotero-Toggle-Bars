@@ -32,11 +32,11 @@ Toggles = {
     doc.getElementById('menu_viewPopup').appendChild(tab_bar_item);
     this.storeAddedElement(tab_bar_item);
 
+    // Annotation Tool Bar Toggle
     let annotation_tool_bar = doc.createXULElement('menuitem');
     annotation_tool_bar.id = 'toggle-ann';
     annotation_tool_bar.setAttribute('data-l10n-id', 'toggle-ann');
     annotation_tool_bar.addEventListener('command', () => {
-
       Toggles.toggleAnnotation(annotation_tool_bar.checked);
     });
     doc.getElementById('menu_viewPopup').appendChild(annotation_tool_bar);
@@ -47,13 +47,11 @@ Toggles = {
     side_bar_toggle.id = 'toggle-sidebar';
     side_bar_toggle.setAttribute('data-l10n-id', 'toggle-sidebar');
     side_bar_toggle.addEventListener('command', () => {
-
       Toggles.toggleSidebar();
     });
     doc.getElementById('menu_viewPopup').appendChild(side_bar_toggle);
     this.storeAddedElement(side_bar_toggle);
   },
-
 
   toggleTabBar(doc, on) {
     let title_bar = doc.getElementById("zotero-title-bar")
@@ -100,7 +98,6 @@ Toggles = {
     });
 
     this.annotation_bar_visible = !this.annotation_bar_visible;
-
   },
 
   toggleSidebar() {
