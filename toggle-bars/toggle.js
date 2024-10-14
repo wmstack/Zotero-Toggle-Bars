@@ -19,9 +19,15 @@ Toggles = {
     Zotero.debug("Make It Red: " + msg);
   },
 
-  addMenuItems(window) {
-    let doc = window.document;
-
+  addMenuItems(doc, manualPopup) {
+    var viewPopup;
+    if (manualPopup) {
+      // The view popup happens to have no ID, but is the 2nd menupopup in the document
+      viewPopup = doc.querySelectorAll("menupopup")[2];
+    } else {
+      viewPopup = doc.getElementById('menu_viewPopup');
+    }
+     
     // Tab Bar Toggle
     let tab_bar_item = doc.createXULElement('menuitem');
     tab_bar_item.id = 'toggle-tab';
@@ -29,7 +35,7 @@ Toggles = {
     tab_bar_item.addEventListener('command', () => {
       Toggles.toggleTabBar(doc);
     });
-    doc.getElementById('menu_viewPopup').appendChild(tab_bar_item);
+    viewPopup.appendChild(tab_bar_item);
     this.storeAddedElement(tab_bar_item);
 
     // Annotation Tool Bar Toggle
@@ -39,7 +45,7 @@ Toggles = {
     annotation_tool_bar.addEventListener('command', () => {
       Toggles.toggleAnnotation(annotation_tool_bar.checked);
     });
-    doc.getElementById('menu_viewPopup').appendChild(annotation_tool_bar);
+    viewPopup.appendChild(annotation_tool_bar);
     this.storeAddedElement(annotation_tool_bar);
 
     // Sidebar toggle
@@ -49,7 +55,8 @@ Toggles = {
     side_bar_toggle.addEventListener('command', () => {
       Toggles.toggleSidebar();
     });
-    doc.getElementById('menu_viewPopup').appendChild(side_bar_toggle);
+    
+    viewPopup.appendChild(side_bar_toggle);
     this.storeAddedElement(side_bar_toggle);
   },
 
@@ -101,14 +108,16 @@ Toggles = {
   },
 
   toggleSidebar() {
-    Zotero.Reader.toggleSidebar();
+    Zotero.Reader._readers.forEach(reader => {
+      reader.toggleSidebar();
+    });
   },
 
-  addToWindow(window) {
+  addToWindow(window, manualPopup = false) {
     // Use Fluent for localization
     window.MozXULElement.insertFTLIfNeeded("toggles.ftl");
 
-    this.addMenuItems(window);
+    this.addMenuItems(window.document, manualPopup);
   },
 
   addToAllWindows() {
@@ -117,6 +126,19 @@ Toggles = {
       if (!win.ZoteroPane) continue;
       this.addToWindow(win);
     }
+
+    let windowListener = {
+      onOpenWindow: function(aWindow) {
+          let domWindow = aWindow.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+                                  .getInterface(Components.interfaces.nsIDOMWindow);
+          domWindow.addEventListener("load", function() {
+              Toggles.addToWindow(domWindow, true);
+          }, {once: true});
+      }
+  };
+  
+    // Add the listener to detect new windows
+    Services.wm.addListener(windowListener);
   },
 
   storeAddedElement(elem) {
