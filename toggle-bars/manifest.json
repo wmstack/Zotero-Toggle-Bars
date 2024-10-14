@@ -3,7 +3,7 @@
 	"name": "Toggle Bars",
 	"version": "2.0",
 	"description": "Allows you to toggle various bars as well as the sidebar",
-	"homepage_url": "https://github.com/zotero/make-it-red",
+	"homepage_url": "https://github.com/wmstack/Zotero-Toggle-Bars",
 	"applications": {
 		"zotero": {
 			"id": "togglebars@example.com",
